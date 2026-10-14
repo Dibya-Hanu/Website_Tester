@@ -1,0 +1,23 @@
+id: uwt-exposed-git-head
+info:
+  name: Git repository metadata is publicly exposed
+  author: uwt-contributors
+  severity: high
+  description: Reads HEAD only; never downloads repository contents.
+  tags: uwt,exposure,passive
+http:
+  - method: GET
+    path:
+      - "{{RootURL}}/.git/HEAD"
+    redirects: false
+    matchers-condition: and
+    matchers:
+      - type: status
+        status: [200]
+      - type: regex
+        part: body
+        regex: ['(?m)^ref: refs/[A-Za-z0-9/._-]+\s*$']
+      - type: word
+        part: header
+        words: ["text/html"]
+        negative: true

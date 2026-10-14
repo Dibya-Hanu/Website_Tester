@@ -1,0 +1,70 @@
+/api/health {
+  "status": "ok",
+  "app": "AI Universal Website Tester",
+  "version": "1.0.0"
+}
+/api/policy {
+  "origins": [
+    "http://127.0.0.1:3000",
+    "http://dvwa:80",
+    "http://juice-shop:3000"
+  ],
+  "max_users": 4,
+  "load_seconds": 10,
+  "max_pages": 5,
+  "warning": "Security and load tests REFUSE non-allowlisted origins. Read-only checks may still run on public sites."
+}
+/api/tools {
+  "tools": [
+    {
+      "name": "Ollama text model",
+      "available": true,
+      "detail": "qwen2.5:0.5b-instruct-q2_K",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "Ollama vision model",
+      "available": false,
+      "detail": "qwen2.5vl:7b",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "OWASP ZAP",
+      "available": true,
+      "detail": "2.16.1",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "Nuclei",
+      "available": true,
+      "detail": "Curated GET-only templates",
+      "license": "MIT"
+    },
+    {
+      "name": "Lighthouse",
+      "available": true,
+      "detail": "Local scanner package",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "axe-core",
+      "available": true,
+      "detail": "Local scanner package",
+      "license": "MPL-2.0"
+    },
+    {
+      "name": "Pa11y",
+      "available": true,
+      "detail": "Local scanner package",
+      "license": "LGPL-3.0"
+    },
+    {
+      "name": "Locust",
+      "available": true,
+      "detail": "4 users / 10s configured",
+      "license": "MIT"
+    }
+  ],
+  "ready": false,
+  "ollama_reachable": true
+}

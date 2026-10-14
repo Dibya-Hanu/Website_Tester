@@ -1,0 +1,23 @@
+id: uwt-exposed-env
+info:
+  name: Sensitive environment file is publicly exposed
+  author: uwt-contributors
+  severity: high
+  description: Signature-only check. Extractors/raw evidence are deliberately disabled.
+  tags: uwt,exposure,passive
+http:
+  - method: GET
+    path:
+      - "{{RootURL}}/.env"
+    redirects: false
+    matchers-condition: and
+    matchers:
+      - type: status
+        status: [200]
+      - type: regex
+        part: body
+        regex: ['(?m)^[A-Z0-9_]*(SECRET|TOKEN|PASSWORD|API_KEY)[A-Z0-9_]*\s*=']
+      - type: word
+        part: header
+        words: ["text/html"]
+        negative: true

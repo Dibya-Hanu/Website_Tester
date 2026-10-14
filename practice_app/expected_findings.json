@@ -1,0 +1,22 @@
+{
+  "app": "Practice Shop",
+  "note": "Ground truth for the intentional flaws. Used by tests/ integration tests; nothing here is a real vulnerability.",
+  "expected": [
+    {"id": "broken-link", "pillar": "functionality", "where": "/ -> /missing-page", "detector": "internal link check (HTTP 404)"},
+    {"id": "broken-image", "pillar": "functionality", "where": "/ -> /assets/missing-banner.png", "detector": "browser failed request / broken image"},
+    {"id": "console-error", "pillar": "functionality", "where": "/about", "detector": "browser console error (ReferenceError)"},
+    {"id": "weak-form-validation", "pillar": "functionality", "where": "/contact", "detector": "DOM form inspection: email field is type=text (Possible/Low)"},
+    {"id": "missing-alt", "pillar": "accessibility", "where": "/", "detector": "axe-core image-alt"},
+    {"id": "unlabeled-fields", "pillar": "accessibility", "where": "/contact", "detector": "axe-core label (visible text is not associated with inputs; no placeholder)"},
+    {"id": "low-contrast", "pillar": "accessibility", "where": "/about", "detector": "axe-core color-contrast"},
+    {"id": "heading-order", "pillar": "accessibility", "where": "/about", "detector": "axe-core heading-order"},
+    {"id": "empty-button-and-link-name", "pillar": "accessibility", "where": "/products", "detector": "axe-core button-name / link-name"},
+    {"id": "missing-security-headers", "pillar": "security", "where": "all pages", "detector": "header check (CSP, X-Content-Type-Options, Referrer-Policy, framing)"},
+    {"id": "weak-cookie", "pillar": "security", "where": "/", "detector": "cookie flag check (session_id without HttpOnly/SameSite)"},
+    {"id": "exposed-env", "pillar": "security", "where": "/.env", "detector": "signature-checked exposed file (fake values)"},
+    {"id": "exposed-git", "pillar": "security", "where": "/.git/HEAD", "detector": "signature-checked exposed file"},
+    {"id": "inert-reflection", "pillar": "security", "where": "/search?q=", "detector": "inert <uwt-probe> reflection (never executable)"},
+    {"id": "slow-response", "pillar": "performance", "where": "/slow", "detector": "HTTP timing (~1.8 s)"},
+    {"id": "oversized-asset", "pillar": "performance", "where": "/assets/big.js", "detector": "resource size (~1.5 MB)"}
+  ]
+}

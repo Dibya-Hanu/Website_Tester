@@ -1,0 +1,21 @@
+id: uwt-missing-csp
+info:
+  name: Content Security Policy is missing
+  author: uwt-contributors
+  severity: medium
+  description: Read-only response header observation; not proof of XSS.
+  tags: uwt,headers,passive
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    redirects: false
+    matchers-condition: and
+    matchers:
+      - type: status
+        status: [200]
+      - type: word
+        part: header
+        words: ["content-security-policy:"]
+        case-insensitive: true
+        negative: true

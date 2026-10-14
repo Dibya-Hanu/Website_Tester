@@ -1,0 +1,174 @@
+name: ai-universal-website-tester
+services:
+  app:
+    image: ai-universal-website-tester:local
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment: &app-environment
+      UWT_ALLOWLIST: ${UWT_ALLOWLIST:-http://juice-shop:3000,http://dvwa:80}
+      UWT_REQUIRE_ALLOWLIST_ALL_SCANS: ${UWT_REQUIRE_ALLOWLIST_ALL_SCANS:-true}
+      UWT_WORKER_MODE: external
+      UWT_OLLAMA_URL: http://ollama:11434
+      UWT_TEXT_MODEL: ${UWT_TEXT_MODEL:-qwen2.5:1.5b}
+      UWT_VISION_MODEL: ${UWT_VISION_MODEL:-qwen2.5vl:7b}
+      UWT_AI_ENABLED: ${UWT_AI_ENABLED:-true}
+      UWT_AI_TIMEOUT: ${UWT_AI_TIMEOUT:-180}
+      UWT_AI_CONTEXT: ${UWT_AI_CONTEXT:-8192}
+      UWT_JOB_TIMEOUT: ${UWT_JOB_TIMEOUT:-2400}
+      UWT_AI_KEEP_ALIVE: ${UWT_AI_KEEP_ALIVE:-1m}
+      UWT_MAX_PAGES: ${UWT_MAX_PAGES:-8}
+      UWT_MAX_DEPTH: ${UWT_MAX_DEPTH:-2}
+      UWT_MAX_FORMS: ${UWT_MAX_FORMS:-6}
+      UWT_MAX_USERS: ${UWT_MAX_USERS:-4}
+      UWT_LOAD_SECONDS: ${UWT_LOAD_SECONDS:-10}
+      UWT_LOAD_ENABLED: ${UWT_LOAD_ENABLED:-true}
+      UWT_PROXY_RATE: ${UWT_PROXY_RATE:-15}
+      UWT_ZAP_URL: http://zap:8080
+      UWT_ZAP_API_KEY: ${UWT_ZAP_API_KEY:-local-zap-change-me}
+      UWT_PROXY_ADVERTISED_HOST: app
+    volumes:
+      - app-data:/app/data
+    networks: [web, scanner]
+    shm_size: 1gb
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    depends_on:
+      zap:
+        condition: service_healthy
+      model-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/api/health', timeout=3)"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
+
+  # Keep browser/scanner subprocesses out of the HTTP API process. Run one
+  # worker by default because ZAP and the persistent job store are shared state.
+  worker:
+    image: ai-universal-website-tester:local
+    build: .
+    command: [python, -m, app.worker]
+    environment:
+      <<: *app-environment
+      UWT_PROXY_ADVERTISED_HOST: worker
+    volumes:
+      - app-data:/app/data
+    networks: [web, scanner]
+    shm_size: 1gb
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    depends_on:
+      zap:
+        condition: service_healthy
+      model-init:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  zap:
+    image: ghcr.io/zaproxy/zaproxy:2.17.0
+    # No published proxy/API port and no unrestricted internet egress.
+    command: >-
+      zap.sh -daemon -host 0.0.0.0 -port 8080 -Xmx512m
+      -config api.key=${UWT_ZAP_API_KEY:-local-zap-change-me}
+      -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
+      -config callhome.tel.enabled=false
+      -config autoupdate.checkOnStart=false
+      -config autoupdate.downloadNewRelease=false
+      -config autoupdate.installAddonUpdates=false
+    networks: [scanner]
+    healthcheck:
+      test: [CMD, python3, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/JSON/core/view/version/?apikey=${UWT_ZAP_API_KEY:-local-zap-change-me}', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    restart: unless-stopped
+
+  ollama:
+    image: ai-universal-website-tester-ollama-cpu:local
+    build:
+      context: .
+      dockerfile: Dockerfile.ollama-cpu
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_MAX_LOADED_MODELS: 1
+      OLLAMA_NUM_PARALLEL: 1
+    volumes:
+      - ollama-models:/root/.ollama
+    networks: [web]
+    # CPU by default: no proprietary accelerator runtime required.
+    healthcheck:
+      test: [CMD, ollama, list]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  model-init:
+    image: ai-universal-website-tester:local
+    build: .
+    command: [python, scripts/bootstrap_models.py]
+    environment:
+      <<: *app-environment
+      UWT_PULL_VISION: ${UWT_PULL_VISION:-true}
+    depends_on:
+      ollama:
+        condition: service_healthy
+    networks: [web]
+    restart: "no"
+
+  juice-shop:
+    image: bkimminich/juice-shop:v20.2.0
+    profiles: [labs]
+    ports: ["127.0.0.1:3000:3000"]
+    networks: [scanner]
+    restart: unless-stopped
+
+  dvwa:
+    image: ghcr.io/digininja/dvwa:latest
+    profiles: [labs]
+    ports: ["127.0.0.1:4280:80"]
+    environment:
+      DB_SERVER: dvwa-db
+      DB_DATABASE: dvwa
+      DB_USER: dvwa
+      DB_PASSWORD: lab-only-dvwa-password
+      DISABLE_AUTHENTICATION: "true"
+    depends_on:
+      dvwa-db:
+        condition: service_healthy
+    networks: [scanner]
+    restart: unless-stopped
+
+  dvwa-db:
+    image: mariadb:11.4
+    profiles: [labs]
+    environment:
+      MARIADB_ROOT_PASSWORD: lab-only-root-password
+      MARIADB_DATABASE: dvwa
+      MARIADB_USER: dvwa
+      MARIADB_PASSWORD: lab-only-dvwa-password
+    volumes:
+      - dvwa-data:/var/lib/mysql
+      - ./tools/dvwa-init.sql:/docker-entrypoint-initdb.d/10-dvwa.sql:ro
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [scanner]
+    restart: unless-stopped
+
+volumes:
+  app-data:
+  ollama-models:
+  dvwa-data:
+networks:
+  web:
+  scanner:
+    internal: true

@@ -1,0 +1,30 @@
+# Environment & Secrets (Crucial: Never commit real credentials to public Git)
+.env
+.env.*
+!.env.example
+credentials.json
+!credentials.example.json
+
+# Virtual environment & Python caches
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+*.log
+*.sqlite3
+*.db
+*.zip
+
+# Node dependencies and build artifacts across all subdirectories
+**/node_modules/
+node_modules/
+frontend/dist/
+
+# Runtime data & session cache
+data/
+auth_cache/
+.tempmediaStorage/
+
+# Downloaded tools binaries (ZAP, JRE)
+tools/zap/

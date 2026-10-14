@@ -1,0 +1,13 @@
+{
+  "name": "uwt-open-scanner-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "axe-core": "4.10.3",
+    "lighthouse": "12.6.1",
+    "pa11y": "8.0.0",
+    "puppeteer": "22.15.0"
+  }
+}

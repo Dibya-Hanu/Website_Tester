@@ -1,0 +1,490 @@
+{
+ "catalog_version": "1",
+ "note": "Facts marked unverified come from public model cards and were not re-verified in this build.",
+ "models": [
+  {
+   "id": "qwen2.5-1.5b",
+   "display_name": "Qwen2.5 1.5B Instruct",
+   "provider": "Alibaba Cloud (Qwen)",
+   "categories": [
+    "general-reasoning",
+    "structured-output"
+   ],
+   "purpose": "Small, fast model for summaries and JSON explanations on modest hardware.",
+   "tasks": [
+    "finding-summary",
+    "structured-json",
+    "accessibility-explanation",
+    "performance-analysis"
+   ],
+   "modalities": [
+    "text"
+   ],
+   "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "ollama",
+   "ollama_tag": "qwen2.5:1.5b",
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Ollama"
+   ],
+   "limitations": [
+    "Small model: can miss nuance or produce invalid JSON (the app validates and falls back)."
+   ],
+   "repository_url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+   "setup": [
+    "Install Ollama (https://ollama.com).",
+    "ollama pull qwen2.5:1.5b  (this downloads a large file; the app never downloads models automatically)",
+    "Click Test Model in the AI Models page."
+   ],
+   "recommended_use": "Default text model: plain-English finding explanations and fix hints.",
+   "supported_in_app": true,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "qwen2.5-7b",
+   "display_name": "Qwen2.5 7B Instruct",
+   "provider": "Alibaba Cloud (Qwen)",
+   "categories": [
+    "general-reasoning",
+    "security-triage",
+    "browser-test-planning"
+   ],
+   "purpose": "Stronger general model for triage and test planning if you have more memory.",
+   "tasks": [
+    "finding-summary",
+    "security-triage",
+    "test-planning",
+    "structured-json"
+   ],
+   "modalities": [
+    "text"
+   ],
+   "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "ollama",
+   "ollama_tag": "qwen2.5:7b",
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Ollama"
+   ],
+   "limitations": [
+    "Needs noticeably more RAM/VRAM than the 1.5B model."
+   ],
+   "repository_url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+   "setup": [
+    "Install Ollama (https://ollama.com).",
+    "ollama pull qwen2.5:7b  (this downloads a large file; the app never downloads models automatically)",
+    "Click Test Model in the AI Models page."
+   ],
+   "recommended_use": "Better quality triage and planning than the 1.5B model.",
+   "supported_in_app": true,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "qwen3-8b",
+   "display_name": "Qwen3 8B",
+   "provider": "Alibaba Cloud (Qwen)",
+   "categories": [
+    "general-reasoning"
+   ],
+   "purpose": "Newer general reasoning model from the Qwen family.",
+   "tasks": [
+    "finding-summary",
+    "security-triage",
+    "structured-json"
+   ],
+   "modalities": [
+    "text"
+   ],
+   "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/Qwen/Qwen3-8B",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "ollama",
+   "ollama_tag": "qwen3:8b",
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Ollama"
+   ],
+   "limitations": [
+    "May emit extra reasoning text; output is validated against a schema before use."
+   ],
+   "repository_url": "https://huggingface.co/Qwen/Qwen3-8B",
+   "setup": [
+    "Install Ollama (https://ollama.com).",
+    "ollama pull qwen3:8b  (this downloads a large file; the app never downloads models automatically)",
+    "Click Test Model in the AI Models page."
+   ],
+   "recommended_use": "Candidate for deeper root-cause explanations.",
+   "supported_in_app": true,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "gpt-oss-20b",
+   "display_name": "gpt-oss 20B",
+   "provider": "OpenAI (open-weight release)",
+   "categories": [
+    "general-reasoning"
+   ],
+   "purpose": "Larger open-weight reasoning model.",
+   "tasks": [
+    "finding-summary",
+    "security-triage",
+    "structured-json"
+   ],
+   "modalities": [
+    "text"
+   ],
+   "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/openai/gpt-oss-20b",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "ollama",
+   "ollama_tag": "gpt-oss:20b",
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Ollama"
+   ],
+   "limitations": [
+    "Open-weight, not open training data. Large memory footprint. Read the accompanying usage policy."
+   ],
+   "repository_url": "https://huggingface.co/openai/gpt-oss-20b",
+   "setup": [
+    "Install Ollama (https://ollama.com).",
+    "ollama pull gpt-oss:20b  (this downloads a large file; the app never downloads models automatically)",
+    "Click Test Model in the AI Models page."
+   ],
+   "recommended_use": "Candidate for high-quality analysis on machines with ample memory.",
+   "supported_in_app": true,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "qwen2.5-coder-7b",
+   "display_name": "Qwen2.5-Coder 7B Instruct",
+   "provider": "Alibaba Cloud (Qwen)",
+   "categories": [
+    "coding"
+   ],
+   "purpose": "Code-focused model for suggesting small fixes.",
+   "tasks": [
+    "code-fix-suggestion",
+    "debugging-steps"
+   ],
+   "modalities": [
+    "text"
+   ],
+   "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "ollama",
+   "ollama_tag": "qwen2.5-coder:7b",
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Ollama"
+   ],
+   "limitations": [
+    "Licence differs between sizes in this family; this entry is the 7B checkpoint only."
+   ],
+   "repository_url": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct",
+   "setup": [
+    "Install Ollama (https://ollama.com).",
+    "ollama pull qwen2.5-coder:7b  (this downloads a large file; the app never downloads models automatically)",
+    "Click Test Model in the AI Models page."
+   ],
+   "recommended_use": "Suggest example patches. Suggestions are never applied or claimed as verified automatically.",
+   "supported_in_app": true,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "qwen2.5vl-7b",
+   "display_name": "Qwen2.5-VL 7B Instruct",
+   "provider": "Alibaba Cloud (Qwen)",
+   "categories": [
+    "vision"
+   ],
+   "purpose": "Reads screenshots and describes visual or layout problems.",
+   "tasks": [
+    "screenshot-analysis",
+    "visual-ux-review"
+   ],
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "ollama",
+   "ollama_tag": "qwen2.5vl:7b",
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Ollama"
+   ],
+   "limitations": [
+    "Visual suggestions are hypotheses, not verified accessibility or security findings.",
+    "Large download."
+   ],
+   "repository_url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+   "setup": [
+    "Install Ollama (https://ollama.com).",
+    "ollama pull qwen2.5vl:7b  (this downloads a large file; the app never downloads models automatically)",
+    "Click Test Model in the AI Models page."
+   ],
+   "recommended_use": "Default vision model: visual UX suggestions, kept separate from verified findings.",
+   "supported_in_app": true,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "mistral-7b",
+   "display_name": "Mistral 7B Instruct",
+   "provider": "Mistral AI",
+   "categories": [
+    "general-reasoning"
+   ],
+   "purpose": "General 7B model.",
+   "tasks": [
+    "finding-summary",
+    "structured-json"
+   ],
+   "modalities": [
+    "text"
+   ],
+   "license": {
+    "name": "Apache-2.0",
+    "url": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "ollama",
+   "ollama_tag": "mistral:7b",
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Ollama"
+   ],
+   "limitations": [
+    "Licence reported for the v0.3 checkpoint; other releases may differ."
+   ],
+   "repository_url": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3",
+   "setup": [
+    "Install Ollama (https://ollama.com).",
+    "ollama pull mistral:7b  (this downloads a large file; the app never downloads models automatically)",
+    "Click Test Model in the AI Models page."
+   ],
+   "recommended_use": "Alternative general model.",
+   "supported_in_app": true,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "florence-2-large",
+   "display_name": "Florence-2 Large",
+   "provider": "Microsoft",
+   "categories": [
+    "vision"
+   ],
+   "purpose": "Compact vision model for captioning and detection.",
+   "tasks": [
+    "screenshot-captioning"
+   ],
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "license": {
+    "name": "MIT",
+    "url": "https://huggingface.co/microsoft/Florence-2-large",
+    "reviewed": true,
+    "commercial_use": "Permitted under the reported licence (verify the exact checkpoint)",
+    "notes": "Reported from the public model card; not re-verified in this build. Verify the exact checkpoint licence before production use."
+   },
+   "classification": "open-weight",
+   "deployment": "local",
+   "runtime": "transformers",
+   "ollama_tag": null,
+   "api_key_required": false,
+   "cost_type": "self-hosted",
+   "pricing": {
+    "value": "No per-token fee; you pay for your own hardware",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Unknown — verify before production",
+   "memory_requirements": "Unknown — verify before production",
+   "backends": [
+    "Hugging Face Transformers"
+   ],
+   "limitations": [
+    "Runs through Hugging Face Transformers, which this build does not integrate. Not selectable here."
+   ],
+   "repository_url": "https://huggingface.co/microsoft/Florence-2-large",
+   "setup": [
+    "Not supported by the built-in runner. Listed so the licence and capability can be reviewed."
+   ],
+   "recommended_use": "Listed for evaluation only.",
+   "supported_in_app": false,
+   "facts_verified": false,
+   "last_verified": null
+  },
+  {
+   "id": "hosted-openai-compatible",
+   "display_name": "Hosted OpenAI-compatible API (any provider)",
+   "provider": "Varies by provider",
+   "categories": [
+    "general-reasoning",
+    "coding",
+    "vision"
+   ],
+   "purpose": "Paid or free-tier hosted models behind an API key.",
+   "tasks": [],
+   "modalities": [
+    "text"
+   ],
+   "license": {
+    "name": "Unknown — verify before production",
+    "url": null,
+    "reviewed": false,
+    "commercial_use": "Unknown — verify before production",
+    "notes": "Provider terms apply; not an open-source or open-weight model."
+   },
+   "classification": "hosted-api",
+   "deployment": "hosted",
+   "runtime": "hosted-api",
+   "ollama_tag": null,
+   "api_key_required": true,
+   "cost_type": "paid-api",
+   "pricing": {
+    "value": "Unknown — verify before production",
+    "source": null,
+    "last_verified": null
+   },
+   "context_length": "Unknown — verify before production",
+   "approx_size": "Not applicable",
+   "memory_requirements": "Not applicable",
+   "backends": [
+    "Provider API"
+   ],
+   "limitations": [
+    "NOT IMPLEMENTED in this build: no hosted provider calls are made. Sending website data to a third party would require explicit consent and backend-held keys, neither of which is built yet.",
+    "Pricing and free-tier limits change; never assume a free tier is unlimited."
+   ],
+   "repository_url": null,
+   "setup": [
+    "Not available in this build."
+   ],
+   "recommended_use": "None until implemented.",
+   "supported_in_app": false,
+   "facts_verified": false,
+   "last_verified": null
+  }
+ ]
+}

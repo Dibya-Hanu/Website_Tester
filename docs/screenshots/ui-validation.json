@@ -1,0 +1,22 @@
+{
+  "app": "http://127.0.0.1:8081",
+  "job": "87fe16e175a04705821d3371b6bf3127",
+  "checks": {
+    "url_only_home_and_authorization_warning": true,
+    "pillar_and_severity_filters": true,
+    "evidence_drawer_and_escape": true,
+    "durable_history": true,
+    "mobile_no_page_overflow": true,
+    "html_export": true,
+    "pdf_export": true,
+    "json_export": true
+  },
+  "console_errors": [],
+  "accessibility": {
+    "home-desktop": [],
+    "report-desktop": [],
+    "issue-drawer": [],
+    "history-desktop": [],
+    "home-mobile": []
+  }
+}

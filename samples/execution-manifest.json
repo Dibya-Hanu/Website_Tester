@@ -1,0 +1,204 @@
+{
+  "kind": "actual measured run, not a fixture of invented findings",
+  "report_id": "96fd38650f704e048b1f75136ebb4a2a",
+  "target": "http://127.0.0.1:3000/",
+  "finished_at": "2026-10-09T14:37:54.899965+00:00",
+  "partial": true,
+  "overall_score": 55,
+  "coverage_percent": 82,
+  "findings": 150,
+  "verified": 65,
+  "steps": {
+    "policy": {
+      "status": "completed",
+      "detail": "Exact origin approved for security and load."
+    },
+    "crawl": {
+      "status": "completed",
+      "detail": "Mapped 5 pages. 0 page failures. Same-origin links only; no mutation submissions."
+    },
+    "ai_map": {
+      "status": "completed",
+      "detail": "Local classification/flow inference completed 4/4 bounded tasks. 2 known-page flows proposed."
+    },
+    "ai_tests": {
+      "status": "partial",
+      "detail": "Executed 10/12 client-side cases. No credentials or state-changing submissions; server-side login/checkout behavior remains untested. Some cases used deterministic fallback, not AI generation."
+    },
+    "links": {
+      "status": "partial",
+      "detail": "Checked 7/9 internal links; SPA fragments require browser coverage. Replayed 2 AI-selected known-page flows through read-only navigation."
+    },
+    "custom_security": {
+      "status": "completed",
+      "detail": "Read-only headers, cookies, file signatures; probed 1 observed GET parameters with inert payloads. 0 request failures."
+    },
+    "zap": {
+      "status": "completed",
+      "detail": "Passive baseline over safe crawl seeds; active scan and autonomous spider disabled."
+    },
+    "nuclei": {
+      "status": "completed",
+      "detail": "Only 3 committed GET-only templates; no fuzzing, OAST or template downloads."
+    },
+    "http_timing": {
+      "status": "completed",
+      "detail": "Three sequential GET measurements through the safety proxy."
+    },
+    "lighthouse": {
+      "status": "partial",
+      "detail": "Mobile laboratory Lighthouse. LCP/CLS/TBT/FCP measured; field INP not fabricated."
+    },
+    "load": {
+      "status": "completed",
+      "detail": "GET-only load: 4 users / 10s, capped at 20 / 30 with early-stop protection."
+    },
+    "axe": {
+      "status": "completed",
+      "detail": "axe-core audited 5 pages; 0 pages could not be audited."
+    },
+    "pa11y": {
+      "status": "completed",
+      "detail": "Pa11y audited 3 pages; 0 failures."
+    },
+    "vision": {
+      "status": "skipped",
+      "detail": "Local vision review completed 0/4 screenshot tasks; visual findings stay Possible."
+    },
+    "verify": {
+      "status": "completed",
+      "detail": "Deterministic re-tests applied; matching root causes merged with provenance retained."
+    },
+    "triage": {
+      "status": "partial",
+      "detail": "Recorded 0 completed and 2 partially applied local-AI tasks. See the unchanged per-task ledger."
+    },
+    "synthesis": {
+      "status": "completed",
+      "detail": "Local AI synthesis applied; evidence, verification and scores remain deterministic."
+    }
+  },
+  "tool_versions": {
+    "Playwright": "1.52.0",
+    "axe-core": "4.10.3",
+    "Pa11y": "8.0.0",
+    "Locust": "2.37.14",
+    "Nuclei": "3.4.10 (image default)",
+    "Lighthouse": "12.6.1",
+    "ZAP": "2.16.1",
+    "Ollama text model": "qwen2.5:0.5b-instruct-q2_K",
+    "Ollama vision model": "qwen2.5vl:7b"
+  },
+  "ai_tasks": [
+    {
+      "name": "Page classification \u00b7 batch 1",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:32:22.642148+00:00",
+      "status": "completed",
+      "detail": "Local model returned a schema-valid response.",
+      "finished_at": "2026-10-09T14:32:35.007202+00:00"
+    },
+    {
+      "name": "Page classification \u00b7 batch 2",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:32:35.007623+00:00",
+      "status": "completed",
+      "detail": "Local model returned a schema-valid response.",
+      "finished_at": "2026-10-09T14:32:47.566219+00:00"
+    },
+    {
+      "name": "Page classification \u00b7 batch 3",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:32:47.566334+00:00",
+      "status": "completed",
+      "detail": "Local model returned a schema-valid response.",
+      "finished_at": "2026-10-09T14:32:54.315632+00:00"
+    },
+    {
+      "name": "Key user flow discovery",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:32:54.315721+00:00",
+      "status": "completed",
+      "detail": "Local model returned a schema-valid response.",
+      "finished_at": "2026-10-09T14:33:23.300683+00:00"
+    },
+    {
+      "name": "Generate validation cases: page-2-form-1",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:33:23.334111+00:00",
+      "status": "partial",
+      "detail": "Applied 2 safe AI-generated categories; deterministic cases filled the missing categories.",
+      "finished_at": "2026-10-09T14:33:42.835332+00:00"
+    },
+    {
+      "name": "Generate validation cases: page-3-form-1",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:33:50.922973+00:00",
+      "status": "failed",
+      "detail": "Local inference failed: HTTPStatusError: Ollama HTTP 500 \u2014 model requires more system memory (493.5 MiB) than is available (473.4 MiB)",
+      "finished_at": "2026-10-09T14:33:50.996344+00:00"
+    },
+    {
+      "name": "Generate validation cases: page-1-form-1",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:33:58.565613+00:00",
+      "status": "partial",
+      "detail": "Applied 3 safe AI-generated categories; deterministic cases filled the missing categories.",
+      "finished_at": "2026-10-09T14:34:15.443582+00:00"
+    },
+    {
+      "name": "Visual review: page-1 / desktop",
+      "model": "qwen2.5vl:7b",
+      "started_at": "2026-10-09T14:35:54.521302+00:00",
+      "status": "skipped",
+      "detail": "Model qwen2.5vl:7b is not installed in Ollama."
+    },
+    {
+      "name": "Visual review: page-1 / mobile",
+      "model": "qwen2.5vl:7b",
+      "started_at": "2026-10-09T14:35:54.521322+00:00",
+      "status": "skipped",
+      "detail": "Model qwen2.5vl:7b is not installed in Ollama."
+    },
+    {
+      "name": "Visual review: page-2 / desktop",
+      "model": "qwen2.5vl:7b",
+      "started_at": "2026-10-09T14:35:54.521331+00:00",
+      "status": "skipped",
+      "detail": "Model qwen2.5vl:7b is not installed in Ollama."
+    },
+    {
+      "name": "Visual review: page-2 / mobile",
+      "model": "qwen2.5vl:7b",
+      "started_at": "2026-10-09T14:35:54.521335+00:00",
+      "status": "skipped",
+      "detail": "Model qwen2.5vl:7b is not installed in Ollama."
+    },
+    {
+      "name": "Security triage \u00b7 batch 1",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:35:55.080217+00:00",
+      "status": "partial",
+      "detail": "Applied triage to 5/6 known IDs; unobserved IDs were ignored.",
+      "finished_at": "2026-10-09T14:36:52.910843+00:00"
+    },
+    {
+      "name": "Security triage \u00b7 batch 2",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:36:52.912863+00:00",
+      "status": "partial",
+      "detail": "Applied triage to 1/5 known IDs; unobserved IDs were ignored.",
+      "finished_at": "2026-10-09T14:37:17.309472+00:00"
+    },
+    {
+      "name": "Final report synthesis",
+      "model": "qwen2.5:0.5b-instruct-q2_K",
+      "started_at": "2026-10-09T14:37:17.496958+00:00",
+      "status": "completed",
+      "detail": "Local model returned a schema-valid response.",
+      "finished_at": "2026-10-09T14:37:54.891543+00:00"
+    }
+  ],
+  "regenerate": "docker compose --profile labs up --build -d && python scripts/generate_sample.py --url http://juice-shop:3000/",
+  "derived_coverage_rebuild_note": "AI-stage coverage was rebuilt from the unchanged measured task ledger; partial accepted output is counted as partial, not skipped. No scan or finding was invented."
+}
